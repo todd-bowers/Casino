@@ -61,6 +61,7 @@ public class IOConsole {
         } catch (NumberFormatException nfe) {
             println("[ %s ] is an invalid user input!", stringInput);
             println("Try inputting an integer value!");
+//            s
             return getLongInput(prompt, args);
         }
     }
