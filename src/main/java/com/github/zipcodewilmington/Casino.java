@@ -30,10 +30,14 @@ public class Casino implements Runnable {
                 boolean isValidLogin = casinoAccount != null;
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
-                    if (gameSelectionInput.equals("SLOTS")) {
+                    if (gameSelectionInput.equalsIgnoreCase("SLOTS")) {
                         play(new SlotsGame(), new SlotsPlayer());
-                    } else if (gameSelectionInput.equals("NUMBERGUESS")) {
+                    } else if (gameSelectionInput.equalsIgnoreCase("NUMBERGUESS")) {
                         play(new NumberGuessGame(), new NumberGuessPlayer());
+                    } else if (gameSelectionInput.equalsIgnoreCase("BLACKJACK")){
+//                        play(new NumberGuessGame(), new NumberGuessPlayer());
+                    } else if (gameSelectionInput.equalsIgnoreCase("ROULETTE")){
+//                        play(new NumberGuessGame(), new NumberGuessPlayer());
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
@@ -51,7 +55,7 @@ public class Casino implements Runnable {
                 CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
                 casinoAccountManager.registerAccount(newAccount);
             }
-        } while (!"logout".equals(arcadeDashBoardInput));
+        } while (!"logout".equalsIgnoreCase(arcadeDashBoardInput));
     }
 
     private String getArcadeDashboardInput() {
@@ -66,7 +70,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ NUMBERGUESS ]")
+                .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ BLACKJACK ], [ ROULETTE ]")
                 .toString());
     }
 
@@ -76,4 +80,37 @@ public class Casino implements Runnable {
         game.add(player);
         game.run();
     }
+
+    public void moveGame() {
+        String move = console.getStringInput("Do you want to play another game? Enter 3");
+        if(move.equals("3")) {
+            getGameSelectionInput();
+        } else {  //TODO Need to create the else statement for not qutting
+
+        }
+    }
+
+
+
+    public void bet() {
+        System.out.println("You have ");  //TODO need to get the account amount
+        int bet = console.getIntegerInput("How much do you want to bet?");
+//        while(bet>maxBet) {
+//            console.getIntegerInput("That bet is too high for this game, please enter a new bet");
+//        }
+//        while (bet<minBet) {
+//            console.getIntegerInput("That bet is too low for this game. Please enter a new bet");
+//        }
+
+    }
+
+    public void quit() {
+        String quit = console.getStringInput("Do you want to move to another game?");
+        if(quit.equals("1")) {
+            //TODO need to figure out how to quit the whole game
+        }
+    }
+
+
+
 }
