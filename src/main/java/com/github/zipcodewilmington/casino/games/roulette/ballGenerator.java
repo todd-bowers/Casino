@@ -9,8 +9,8 @@ public class ballGenerator {
         Random random = new Random();
         int ballNumber = random.nextInt(36);
         results.setNumber(ballNumber);
-        results.setColor(null);
-        results.setEven(true);
+        results.setColor(colorResult(ballNumber));
+        results.setEven(evenOrOdd(ballNumber));
         return results;
     }
 
