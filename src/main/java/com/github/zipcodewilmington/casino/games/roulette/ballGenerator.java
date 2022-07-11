@@ -1,7 +1,7 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
 import java.util.Random;
-public class ballGenerator {
+public class ballGenerator extends rouletteBall {
     public rouletteBall generator(){
 
         rouletteBall results = new rouletteBall();
