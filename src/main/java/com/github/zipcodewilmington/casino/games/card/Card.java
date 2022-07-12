@@ -1,15 +1,12 @@
 package com.github.zipcodewilmington.casino.games.card;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Cards{
+public class Card {
 
     private Suit suit;
     private Rank rank;
 
 
-    public Cards(Suit suit, Rank rank){
+    public Card(Suit suit, Rank rank){
         this.suit = suit;
         this.rank = rank;
     }

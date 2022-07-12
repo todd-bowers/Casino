@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.casino.games;
+package com.github.zipcodewilmington.casino.games.card;
 
 public enum Suit {
     CLUB("Clubs"),
