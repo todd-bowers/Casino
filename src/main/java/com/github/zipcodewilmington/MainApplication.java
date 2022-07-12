@@ -7,8 +7,7 @@ public class MainApplication {
     public static void main(String[] args) {
 //        new Casino().run();
         BlackjackGame blackjack = new BlackjackGame();
-        Deck playingDeck = new Deck();
-        playingDeck.shuffle();
+
 
 
         System.out.println("nothing");

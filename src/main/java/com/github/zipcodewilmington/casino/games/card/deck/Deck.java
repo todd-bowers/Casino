@@ -5,7 +5,6 @@ import com.github.zipcodewilmington.casino.games.card.Rank;
 import com.github.zipcodewilmington.casino.games.card.Suit;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Deck extends Card {
@@ -14,10 +13,11 @@ public class Deck extends Card {
     private Deck comingFrom;
     private Card addCard;
     
-//    public Deck(){
-//        this.cards = new ArrayList<Card>();
-//        this.shuffle();
-//    }
+    public Deck(ArrayList<Object> deck){
+        this.deck = deck;
+        this.cards = new ArrayList<Card>();
+        this.shuffle();
+    }
 
 //
 //        List<Cards> Deck;
@@ -33,7 +33,7 @@ public class Deck extends Card {
             int randomCard = 0;
             int origSize = this.cards.size();
             for (int i = 0; i < origSize; i++){
-                randomCard = random.nextInt(this.cards.size() - 1);
+                randomCard = random.nextInt(this.cards.size());
                 tempDeck.add(this.cards.get(randomCard));
                 this.cards.remove(randomCard);
             }
