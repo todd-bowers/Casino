@@ -10,10 +10,10 @@ public class ballGeneratorTest {
 
     private ballGenerator testBallGenerator;
 
-    @Before
-    public void setUp(){
-        testBallGenerator = new ballGenerator();
-    }
+//    @Before
+//    public void setUp(){
+//        testBallGenerator = new ballGenerator();
+//    }
 
 //    @Test
 //    //Given

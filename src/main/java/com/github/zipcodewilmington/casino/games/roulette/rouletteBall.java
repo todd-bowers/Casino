@@ -1,6 +1,8 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
-public class rouletteBall {
+import java.util.Random;
+
+public class rouletteBall{
 
     private int number;
     private String color;
@@ -29,4 +31,5 @@ public class rouletteBall {
     public void setEven(boolean even) {
         this.even = even;
     }
+
 }
