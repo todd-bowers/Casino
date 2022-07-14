@@ -10,6 +10,11 @@ package com.github.zipcodewilmington.casino;
         private String accountName;
         private String accountPassword;
 
+        public CasinoAccount () {
+             this.accountName = "";
+             this.accountPassword= "";
+
+        }
 
         public CasinoAccount (String accountName, String accountPassword) {
             this.accountName = accountName;
@@ -19,6 +24,10 @@ package com.github.zipcodewilmington.casino;
 
         public String getAccountName() {
             return accountName;
+        }
+
+        public void setAccountName (String accountName) {
+            this.accountName = accountName;
         }
 
         public String getAccountPassword() {

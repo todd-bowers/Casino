@@ -1,9 +1,11 @@
 package com.github.zipcodewilmington.casino;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 /**
  * Created by leon on 7/21/2020.
@@ -11,7 +13,6 @@ import java.util.logging.Logger;
  * it is advised that every instruction in this class is logged
  */
 public class CasinoAccountManager {
-    private static Logger logger = Logger.getLogger(CasinoAccountManager.class.getName());
     private HashMap<String, CasinoAccount> accountCasinoMap = new HashMap<>();
     private List<CasinoAccount> casAcc = new ArrayList<>();
 
@@ -55,4 +56,5 @@ public class CasinoAccountManager {
         accountCasinoMap.put(accountName,casinoAccount);
         System.out.println("Finished registering account " +accountName);
     }
+
 }
