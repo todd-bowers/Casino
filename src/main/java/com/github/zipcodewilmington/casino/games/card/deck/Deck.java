@@ -1,67 +1,108 @@
 package com.github.zipcodewilmington.casino.games.card.deck;
 
+import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.card.Card;
 import com.github.zipcodewilmington.casino.games.card.Rank;
 import com.github.zipcodewilmington.casino.games.card.Suit;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class Deck extends Card {
-    private final ArrayList<Object> deck;
-    private ArrayList<Card> cards;
+public class Deck implements GameInterface {
+    private ArrayList<Card> deck = new ArrayList<>();
     private Deck comingFrom;
     private Card addCard;
-    
-    public Deck(ArrayList<Object> deck){
-        this.deck = deck;
-        this.cards = new ArrayList<Card>();
+
+
+
+    public Deck() {
+        super();
+        this.fullDeck();
         this.shuffle();
     }
 
-//
-//        List<Cards> Deck;
-//        for (int i = 0; i < Rank.values().length; i++) {
-//            for (int j = 0; j < 4; j++) {
-//                deck.add(new Cards(Suit.values()[j], Rank.values()[i]));
-//            }
-//        }
-
-        public void shuffle(){
-            ArrayList<Card> tempDeck = new ArrayList<Card>();
-            Random random = new Random();
-            int randomCard = 0;
-            int origSize = this.cards.size();
-            for (int i = 0; i < origSize; i++){
-                randomCard = random.nextInt(this.cards.size());
-                tempDeck.add(this.cards.get(randomCard));
-                this.cards.remove(randomCard);
+    public void fullDeck() {
+        for (int i = 0; i < Rank.values().length; i++) {
+            for (int j = 0; j < 4; j++) {
+                this.deck.add(new Card(Suit.values()[j], Rank.values()[i]));
             }
-            this.cards = tempDeck;
+        }
+    }
 
+    public ArrayList<Card> shuffle() {
+        ArrayList<Card> tempDeck = new ArrayList<Card>();
+        Random random = new Random();
+        int randomCard;
+        int origSize = this.deck.size();
+        for (int i = 0; i < origSize; i++) {
+            randomCard = random.nextInt(this.deck.size());
+            tempDeck.add(this.deck.get(randomCard));
+            this.deck.remove(randomCard);
         }
-    public void removeCard(int i){
-            this.cards.remove(i);
-}
-        public Card getCard(int i){
-            return this.cards.get(i);
-        }
+        this.deck = tempDeck;
+        return tempDeck;
+    }
 
-        public void addCard(Card addCard){
-            this.addCard = addCard;
-            this.cards.add(addCard);
-        }
 
-        public void draw(Deck comingFrom){
-            this.comingFrom = comingFrom;
-            this.cards.add(comingFrom.getCard(0));
-            comingFrom.removeCard(0);
-        }
+    public Card getCard(int i) {
+        return this.deck.get(0);
+    }
+
+    public void addCard(Card addCard) {
+        this.deck.add(addCard);
+    }
+
+    public void draw() {
+
+        this.deck.remove(0);
+        System.out.println(this.deck.get(0));
+//        this.comingFrom = comingFrom;
+//        this.deck.add(comingFrom.getCard(0));
+//        comingFrom.removeCard(0);
+    }
+
+    private void removeCard(int i) {
+    }
 
 
     public Deck(Suit suit, Rank rank) {
-        super(suit, rank);
+        super();
         deck = new ArrayList<>();
     }
 
-}
+
+
+    @Override
+    public void add(PlayerInterface player) {
+
+    }
+
+    @Override
+    public void remove(PlayerInterface player) {
+
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+
+    //    public int getHandValue(){
+//        int value = 0;
+//        int aces = 0;
+//
+//        for (int i = 0; i <ArrayList<Deck
+//            }
+        }
+
+
+
+
+
