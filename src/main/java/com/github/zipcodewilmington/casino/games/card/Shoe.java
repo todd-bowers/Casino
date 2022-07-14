@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Shoe extends Deck {
+public class Shoe {
     private List<Card> allCards = new ArrayList<>();
 
     public Shoe(){
@@ -24,13 +24,15 @@ public class Shoe extends Deck {
         return allCards;
     }
 
-    //        ArrayList<Deck> shoe = new ArrayList<>(312);
-//
-//    for(int i = 0; i < 7; i++)
-//
-//        {
-//            shoe.add(newDeck);
-//
-//        }
+    public Card drawNext(){
+        if(!this.hasCard()) {
+            initializeCards();
+        }
+        return this.allCards.remove(0);
+    }
+
+    public Boolean hasCard(){
+        return this.allCards.size() > 0;
+    }
 }
 

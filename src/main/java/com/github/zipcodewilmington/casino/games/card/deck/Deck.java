@@ -2,12 +2,12 @@ package com.github.zipcodewilmington.casino.games.card.deck;
 
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.blackjack.BlackjackPlayer;
 import com.github.zipcodewilmington.casino.games.card.Card;
 import com.github.zipcodewilmington.casino.games.card.Rank;
 import com.github.zipcodewilmington.casino.games.card.Suit;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Deck implements GameInterface {
@@ -54,13 +54,9 @@ public class Deck implements GameInterface {
         this.deck.add(addCard);
     }
 
-    public void draw() {
-
+    public void draw(BlackjackPlayer dealer) {
         this.deck.remove(0);
         System.out.println(this.deck.get(0));
-//        this.comingFrom = comingFrom;
-//        this.deck.add(comingFrom.getCard(0));
-//        comingFrom.removeCard(0);
     }
 
     private void removeCard(int i) {
