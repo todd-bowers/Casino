@@ -16,7 +16,8 @@ public class NumberGuessGame {
     //if the sum of the dice roll is lower than the secret number, print "Too low, try again!"
     //if the sum of the dice roll is equal to the secret number, print "Congratulation! Win! Win! Win!"
     //After 3rd try, print "Game Over!"
-    //After Game Over, prompt player back to Main Menu
+
+    //After Game Over, prompt player back to Main
     Scanner playerObject = new Scanner(System.in);//for user input
     String playerName;
 
