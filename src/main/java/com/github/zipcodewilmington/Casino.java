@@ -11,33 +11,86 @@ import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by leon on 7/21/2020.
  */
 public class Casino implements Runnable {
-    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
+    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
+    CasinoAccountManager casinoAccount = new CasinoAccountManager();
+    private String name;
+    private Integer balance;
+    List<CasinoAccount> casinoList;
+    boolean quit;
+    CasinoAccount casinoAcc;
 
 
     @Override
     public void run() {
-        boolean quit = true;
-        while(quit) {
-            String accountName = console.getStringInput("Enter your account name:");
-            String accountPassword = console.getStringInput("Enter your account password:");
-            String accountDeposit = String.valueOf(console.getDoubleInput("Hi " + accountName + "\n How much will you be depositing today?"));
-//            CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
-//            CasinoAccount casinoAccount = casinoAccountManager.getAccount(accountName, accountPassword);
-            if(accountName.equalsIgnoreCase("nick") && accountPassword.equalsIgnoreCase("frank")) {
-                CasinoAccount casinoAccount = new CasinoAccount();
-                casinoAccount.holdAccount(accountName, accountPassword);
-//                casinoAccount.holdMoney();
-                String gameSelectionInput = getGameSelectionInput().toUpperCase();
-                if(gameSelectionInput.equalsIgnoreCase("NUMBERGUESS")){
-                    play(new NumberGuessGame(), new NumberGuessPlayer()); //
-                }
+        if(getArcadeDashboardInput().equalsIgnoreCase("create-account")) {
+
+            String accountName = console.getStringInput("Enter a name for your account:");
+            String accountPassword = console.getStringInput("Enter a password for your account");
+            Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
+            CasinoAccount CasinoAccount = casinoAccount.createAccount(accountName, accountPassword, accountBalance);
+//            casinoAccount.registerAccount(CasinoAccount);
+
+            if(getGameSelectionInput().equalsIgnoreCase("SLOTS")) {
+               this.play(new SlotsGame(), new SlotsPlayer(CasinoAccount));
+
             }
+
         }
+
+//            if (getArcadeDashboardInput().equalsIgnoreCase("select-game")) {
+//                SlotsPlayer x = new SlotsPlayer();
+//                SlotsGame y = new SlotsGame();
+//                x.getArcadeAccount();
+//                y.add(x);
+//            }
+        }
+
+//    public HashMap<String, Integer> getAccount(String name, Integer balance){
+//        this.name = name;
+//        this.balance = balance;
+//        this.casinoAccountList = new HashMap<>();
+//        this.casinoAccountList.put(name, balance);
+//
+//        return this.casinoAccountList;
+//    }
+
+//    public List<CasinoAccount> sendAccount() {
+//        List<CasinoAccount> casinoList = new ArrayList<>();
+//        String accountName = console.getStringInput("Enter a name for your account:");
+//        String accountPassword = console.getStringInput("Enter a password for your account");
+//        Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
+//        CasinoAccount casinoAcc = new CasinoAccount(accountName, accountPassword);
+//        casinoList.add(casinoAcc);
+//
+//        return casinoList;
+//    }
+
+
+//                CasinoAccountManager.registerAccount(newAccountM);
+//
+//                ArrayList<CasinoManagement> casinoAccounts = new ArrayList<>(1);
+//                casinoAccounts.add(newAccountM);
+//
+//            }
+//
+//            if(accountName.equalsIgnoreCase("nick") && accountPassword.equalsIgnoreCase("frank")) {
+//
+////                casinoAccount.holdMoney();
+//                String gameSelectionInput = getGameSelectionInput().toUpperCase();
+//                if(gameSelectionInput.equalsIgnoreCase("NUMBERGUESS")){
+//                    play(new NumberGuessGame(), new NumberGuessPlayer()); //
+//                }
+//            }
+
 //        String arcadeDashBoardInput;
 //        CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
 //        do {
@@ -75,15 +128,12 @@ public class Casino implements Runnable {
 //                casinoAccountManager.registerAccount(newAccount);
 //            }
 //        } while (!"logout".equalsIgnoreCase(arcadeDashBoardInput));
-    }
 
-    
+
     private String getArcadeDashboardInput() {
-        return console.getStringInput(new StringBuilder()
-                .append("Welcome to the Arcade Dashboard!")
-                .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ create-account ], [ select-game ]")
-                .toString());
+        return console.getStringInput("Welcome to the Arcade Dashboard!" +
+                "\nFrom here, you can select any of the following options:" +
+                "\n\t[ create-account ], [ select-game ]");
     }
 
     private String getGameSelectionInput() {
@@ -130,7 +180,5 @@ public class Casino implements Runnable {
             //TODO need to figure out how to quit the whole game
         }
     }
-
-
 
 }
