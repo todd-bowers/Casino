@@ -1,14 +1,14 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
 import java.util.Random;
-public class ballGenerator {
+public class ballGenerator extends rouletteBall{
     public rouletteBall generator(){
 
         rouletteBall results = new rouletteBall();
 
         Random random = new Random();
         int ballNumber = random.nextInt(38);
-        if (ballNumber == 37){ //37 --'00'
+        if (ballNumber == 37){ //37 --> '00'
             System.out.print("00");
         }
         results.setNumber(ballNumber);
