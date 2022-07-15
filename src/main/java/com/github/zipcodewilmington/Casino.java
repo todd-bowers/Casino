@@ -11,6 +11,8 @@ import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +29,16 @@ public class Casino implements Runnable {
     List<CasinoAccount> casinoList;
     boolean quit;
     CasinoAccount casinoAccount;
+    private static final String filepath="/Users/fitru/CasinoLabPartII/Casino/HoldAccounts.txt";
 
 
+    public Casino(PlayerInterface player){
+        player.getArcadeAccount();
+    }
+
+    public Casino(){
+
+    }
     @Override
     public void run() {
         if(getArcadeDashboardInput().equalsIgnoreCase("create-account")) {
@@ -37,12 +47,15 @@ public class Casino implements Runnable {
             String accountPassword = console.getStringInput("Enter a password for your account");
             Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
             CasinoAccount casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
+
 //            casinoAccount.registerAccount(CasinoAccount);
+
+
 
             if(getGameSelectionInput().equalsIgnoreCase("SLOTS")) {
                this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
-
             }
+
 
         }
 
@@ -156,11 +169,13 @@ public class Casino implements Runnable {
     }
 
     public void moveGame() {
-        String move = console.getStringInput("Do you want to play another game? Enter 3");
+        String move = console.getStringInput("Do you want to play another game? Enter 3\n" +
+                "Or quit casino and save your funds? Enter 4");
         if(move.equals("3")) {
             getGameSelectionInput();
-        } else {  //TODO Need to create the else statement for not qutting
-
+        } else if (move.equals("4")) {  //TODO Need to create the else statement for not qutting
+            System.out.println("Good bye");
+            System.exit(0);
         }
     }
 
