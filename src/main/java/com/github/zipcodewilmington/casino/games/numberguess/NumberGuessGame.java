@@ -5,41 +5,34 @@ import java.util.Random;
  * Created by leon on 7/21/2020.
  */
 public class NumberGuessGame {
-//Prompt for game menu
-//Start game(user presses space bar)
-// Exit game(user presses delete)
-    //if player starts game, "welcome player"
-    //ask player to pick a number btwn 2-12(user presses numbers on keyboard)
-    //player will be informed that they have max of 3 rounds "You will have a total of three guesses"
-    //player will roll dice"player press enter to activate random number generator aka dice"
-    //if the sum of the dice roll is higher than the secret number, print "Too high, try again!"
-    //if the sum of the dice roll is lower than the secret number, print "Too low, try again!"
-    //if the sum of the dice roll is equal to the secret number, print "Congratulation! Win! Win! Win!"
-    //After 3rd try, print "Game Over!"
-
-    //After Game Over, prompt player back to Main
-    Scanner playerObject = new Scanner(System.in);//for user input
+    public static int playerGuess;
+    public static int randomNumber;
+    Scanner playerObject = new Scanner(System.in);
     String playerName;
 
-    String userName = playerObject.nextLine();
+    public static void main(String[] args) {
 
-    public String startGame(String input){
-        System.out.print("Welcome Player!");
-        System.out.print("Enter username");
-        System.out.print("You have a maximum of 3 rounds!");
-        System.out.print("Press 1 to roll dice");
-        if(userName.equals("1")){
-            diceRoll(1);
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(11) + 2;
+        System.out.println("Random number is a secret");
+        Scanner scanner = new Scanner((System.in));
+        System.out.println("Pick a number between 2 and 12: ");
+
+        int counter = 0;
+
+        while (true) {
+            int playerGuess = scanner.nextInt();
+            if (playerGuess == randomNumber) {
+                System.out.println("Congratulations! You win!");
+                System.out.println("It took you " + counter + " tries");
+                break;
+
+            } else {
+                System.out.println("Nope, guess again!");
+                counter++;
+            }
+
         }
-        return null;
+
     }
-  public String exitGame(String input){
-      System.out.print("Push Delete Key");
-        return null;
-  }
-  public Integer diceRoll(Integer input){
-
-        return null;
-  }
-
 }
