@@ -16,8 +16,14 @@ import java.util.Map;
         private String accountName;
         private String accountPassword;
 
+        public CasinoAccount () {
+             this.accountName = "";
+             this.accountPassword= "";
+             this.balance = 0;
+
 
         public CasinoAccount (String accountName, String accountPassword, Integer balance) {
+
             this.accountName = accountName;
             this.accountPassword = accountPassword;
             this.balance = balance;
@@ -26,6 +32,10 @@ import java.util.Map;
 
         public String getAccountName() {
             return accountName;
+        }
+
+        public void setAccountName (String accountName) {
+            this.accountName = accountName;
         }
 
         public String getAccountPassword() {
