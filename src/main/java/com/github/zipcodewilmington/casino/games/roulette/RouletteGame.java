@@ -91,7 +91,57 @@ public class RouletteGame implements GameInterface {
 
         }
 
-        public void printSummary() {
+    @Override
+    public void bet() {
+
+    }
+
+    @Override
+    public void continueGambling() {
+
+    }
+
+    @Override
+    public void lose() {
+
+    }
+
+    @Override
+    public void outcome() {
+
+    }
+
+    @Override
+    public void bonus() {
+
+    }
+
+    @Override
+    public void enterGame() {
+
+    }
+
+    @Override
+    public void kickout() {
+
+    }
+
+    @Override
+    public void account() {
+
+    }
+
+    @Override
+    public void moneyCheck() {
+
+    }
+
+    @Override
+    public void music() {
+
+    }
+
+    public void printSummary() {
             System.out.println("Welcome to Roulette!");
             System.out.println("Below is the pay out of your desired option.");
             System.out.println("+----------------------------------------------------+");
