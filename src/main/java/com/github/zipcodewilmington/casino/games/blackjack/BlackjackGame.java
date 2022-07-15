@@ -36,6 +36,7 @@ public class BlackjackGame extends Deck implements GameInterface {
 
         while(this.isRunning == true){
             System.out.println("Successfully started game");
+//            this.setBet();
             this.advanceTurn();
             this.isRunning = false;
         }
@@ -47,6 +48,7 @@ public class BlackjackGame extends Deck implements GameInterface {
 
     private void advanceTurn() {
         if(this.dealersTurn){
+            checkDealerWinDefault();
 
         } else {
             //player's code
@@ -55,9 +57,20 @@ public class BlackjackGame extends Deck implements GameInterface {
             if(this.console.getIntegerInput("Please enter your choice\n1: Hit\n2: Stand") == 1){
                 this.playerHand.addCard(shoe.drawNext());
                 System.out.println("Added card");
-            } else {
+                System.out.println(this.playerHand.toString());
+                this.console.getIntegerInput("Please enter your choice\n1: Hit\n2: Stand");
+
+//                this.busted();
+            } else if (this.console.getIntegerInput("Please enter your choice\n1: Hit\n2: Stand") == 2){
+                this.dealersTurn = true;
+                console.println("Dealers Turn. Current Hand:");
+                System.out.println(this.dealersHand.toString());
+
+
+
+
                 //if something stand related needs to happen, set up here?
-                System.out.println("chose to stand");
+//                System.out.println("chose to stand");
             }
         }
 
@@ -81,7 +94,7 @@ public class BlackjackGame extends Deck implements GameInterface {
     }
 
     private void dealInitialHands() {
-        System.out.println("Hitting dealInitial Hands");
+//        System.out.println("Hitting dealInitial Hands");
         this.playerHand.addCard(shoe.drawNext());
         this.dealersHand.addCard(shoe.drawNext());
         this.playerHand.addCard(shoe.drawNext());
@@ -90,10 +103,16 @@ public class BlackjackGame extends Deck implements GameInterface {
     }
 
     public void initializeHands() {
-        System.out.println("Hitting initialize hands");
+//        System.out.println("Hitting initialize hands");
         this.dealersHand = new Hand();
         this.playerHand = new Hand();
     }
+
+//    public void busted(){
+//        if(this.playerHand.getHandSum() > 21){
+//            System.out.println("you went over 21, and lost your bet ");
+//            isRunning = false;
+//    }
 
     public String printEndingMessage() {
         return "Game Over";
