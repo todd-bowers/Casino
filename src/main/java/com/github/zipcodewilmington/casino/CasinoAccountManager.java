@@ -48,7 +48,6 @@ public class CasinoAccountManager {
     /**
      * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
      *
-     * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
      * @param newAcc
      */
     public List<CasinoAccount> registerAccount(CasinoAccount newAcc) {
