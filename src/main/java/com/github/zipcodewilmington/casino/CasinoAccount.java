@@ -17,41 +17,40 @@ import java.util.Map;
         private String accountPassword;
 
         public CasinoAccount () {
-             this.accountName = "";
-             this.accountPassword= "";
-             this.balance = 0;
-
-
-        public CasinoAccount (String accountName, String accountPassword, Integer balance) {
-
-            this.accountName = accountName;
-            this.accountPassword = accountPassword;
-            this.balance = balance;
-
+            this.accountName = "";
+            this.accountPassword = "";
+            this.balance = 0;
         }
 
-        public String getAccountName() {
-            return accountName;
-        }
+        public CasinoAccount(String accountName, String accountPassword, Integer balance) {
 
-        public void setAccountName (String accountName) {
-            this.accountName = accountName;
-        }
+                this.accountName = accountName;
+                this.accountPassword = accountPassword;
+                this.balance = balance;
 
-        public String getAccountPassword() {
-            return accountPassword;
-        }
+            }
 
-        public void setAccountPassword(String accountPassword) {
-            this.accountPassword = accountPassword;
-        }
+            public String getAccountName () {
+                return accountName;
+            }
 
-        public int getBalance () {
-            return balance;
-        }
+            public void setAccountName (String accountName){
+                this.accountName = accountName;
+            }
 
-        public void setBalance (int balance) {
-            this.balance = balance;
-        }
+            public String getAccountPassword () {
+                return accountPassword;
+            }
 
-}
+            public void setAccountPassword (String accountPassword){
+                this.accountPassword = accountPassword;
+            }
+
+            public int getBalance () {
+                return balance;
+            }
+
+            public void setBalance ( int balance){
+                this.balance = balance;
+            }
+        }
