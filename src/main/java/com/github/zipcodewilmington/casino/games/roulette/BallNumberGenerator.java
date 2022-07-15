@@ -1,16 +1,28 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
-import java.util.Random;
-public class ballGenerator extends rouletteBall{
-    public rouletteBall generator(){
+import com.github.zipcodewilmington.casino.PlayerInterface;
 
-        rouletteBall results = new rouletteBall();
+import java.util.Random;
+public abstract class BallNumberGenerator extends RouletteBall{
+
+
+    BallNumberGenerator(int number, String color, boolean even) {
+        super(number, color, even);
+    }
+
+    public BallNumberGenerator() {
+        super();
+    }
+
+    public RouletteBall generator(){
+
+        RouletteBall results = new RouletteBall();
 
         Random random = new Random();
         int ballNumber = random.nextInt(38);
-        if (ballNumber == 37){ //37 --> '00'
-            System.out.print("00");
-        }
+//        if (ballNumber == 37){ //37 --> '00'
+//            System.out.print("00");
+//        }
         results.setNumber(ballNumber);
         results.setColor(colorResult(ballNumber));
         results.setEven(evenOrOdd(ballNumber));
@@ -20,13 +32,13 @@ public class ballGenerator extends rouletteBall{
     public String colorResult(int numLandedOn){
         String color;
         if(numLandedOn == 0)
-            color = ("green" + numLandedOn);
+            color = ("Green " + numLandedOn + "\n");
         else if(numLandedOn == 37) //37 --> '00'
-            color = ("green" + "00");
+            color = ("Green " + "00\n");
         else if (numLandedOn % 2 == 0)
-            color = ("black" + numLandedOn);
+            color = ("Black " + numLandedOn + "\n");
         else
-            color = ("red" + numLandedOn);
+            color = ("Red " + numLandedOn + "\n");
         return color;
     }
 
@@ -42,4 +54,10 @@ public class ballGenerator extends rouletteBall{
             even = false;
         return even;
     }
+
+    public abstract void add(PlayerInterface player);
+
+    public abstract void remove(PlayerInterface player);
+
+    public abstract void run();
 }

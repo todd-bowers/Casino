@@ -1,14 +1,15 @@
 package testRoulette;
 
-import com.github.zipcodewilmington.casino.games.roulette.ballGenerator;
+import com.github.zipcodewilmington.casino.games.roulette.BallNumberGenerator;
+import com.github.zipcodewilmington.casino.games.roulette.BallNumberGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ballGeneratorTest {
+public class BallNumberGeneratorTest {
 
-    private ballGenerator testBallGenerator;
+    private BallNumberGenerator testBallGenerator;
 
 //    @Before
 //    public void setUp(){

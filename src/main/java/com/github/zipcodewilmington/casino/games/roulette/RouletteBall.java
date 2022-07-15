@@ -2,11 +2,21 @@ package com.github.zipcodewilmington.casino.games.roulette;
 
 import java.util.Random;
 
-public class rouletteBall{
+public class RouletteBall{
 
     private int number;
     private String color;
     private boolean even;
+
+    RouletteBall(int number, String color, boolean even){
+        this.number = number;
+        this.color = color;
+        this.even = even;
+    }
+
+    public RouletteBall() {
+
+    }
 
     public int getNumber() {
         return number;
