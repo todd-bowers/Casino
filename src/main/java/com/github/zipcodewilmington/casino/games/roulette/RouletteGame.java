@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
+import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
@@ -7,7 +8,9 @@ import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
 import javax.xml.crypto.NoSuchMechanismException;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RouletteGame extends CasinoAccountManager implements GameInterface {
@@ -20,6 +23,10 @@ public class RouletteGame extends CasinoAccountManager implements GameInterface 
 
     int money = 1000;
     int roundCounter = 1;
+    public List<PlayerInterface> gambler = new ArrayList<>();
+    public List<PlayerInterface> leaveGame = new ArrayList<>();
+
+    private Integer balance;
 
 
     private final IOConsole console = new IOConsole(AnsiColor.RED);
@@ -46,12 +53,17 @@ public class RouletteGame extends CasinoAccountManager implements GameInterface 
 
         @Override
         public void add(PlayerInterface player) {
-            roulettePlayers.add((RoulettePlayer) player);
+            player.getArcadeAccount();
+            this.balance = player.getArcadeAccount().getBalance();
+            System.out.println("Your balance is " + this.balance);
+            gambler.add(player);
         }
 
         @Override
         public void remove(PlayerInterface player) {
-            roulettePlayers.remove((RoulettePlayer) player);
+            gambler.get(0).getArcadeAccount().setBalance(this.balance);
+            Casino c = new Casino(player);
+            c.run();
         }
 
         @Override
@@ -90,7 +102,7 @@ public class RouletteGame extends CasinoAccountManager implements GameInterface 
                 }
 
                 if(betOption == 5){
-                    selectNumber = console.getIntegerInput("Please select a number 00 or 0 - 36");
+                    selectNumber = console.getIntegerInput("Please select a number 0 - 37 [Type 37 is 00]");
                 }
 
                 RouletteBall ball;
