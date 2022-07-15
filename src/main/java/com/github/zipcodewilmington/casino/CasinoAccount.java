@@ -1,5 +1,11 @@
 package com.github.zipcodewilmington.casino;
 
+import com.github.zipcodewilmington.utils.AnsiColor;
+import com.github.zipcodewilmington.utils.IOConsole;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by leon on 7/21/2020.
  * `ArcadeAccount` is registered for each user of the `Arcade`.
@@ -11,9 +17,10 @@ package com.github.zipcodewilmington.casino;
         private String accountPassword;
 
 
-        public CasinoAccount (String accountName, String accountPassword) {
+        public CasinoAccount (String accountName, String accountPassword, Integer balance) {
             this.accountName = accountName;
             this.accountPassword = accountPassword;
+            this.balance = balance;
 
         }
 
@@ -36,4 +43,5 @@ package com.github.zipcodewilmington.casino;
         public void setBalance (int balance) {
             this.balance = balance;
         }
-    }
+
+}
