@@ -11,14 +11,14 @@ public class testCasinoAccountManager {
     public void testCreateAccount() {
         String accountName = "Eugene";
 
-        CasinoAccount casinoAccount = new CasinoAccountManager().createAccount("Eugene","Shin");
+        CasinoAccount casinoAccount = new CasinoAccountManager().createAccount("Eugene","Shin", 2000);
 
         Assert.assertEquals(accountName,casinoAccount.getAccountName());
     }
 
     @Test
     public void testRegisterAccount() {
-        CasinoAccount casinoAccount = new CasinoAccount("Eugene","Shin");
+        CasinoAccount casinoAccount = new CasinoAccount("Eugene","Shin", 2000);
 
         casinoAccountManager.registerAccount(casinoAccount);
 

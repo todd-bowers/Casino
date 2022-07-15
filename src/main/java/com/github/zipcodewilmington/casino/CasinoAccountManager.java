@@ -13,7 +13,7 @@ import java.util.List;
  * it is advised that every instruction in this class is logged
  */
 public class CasinoAccountManager {
-    private HashMap<String, CasinoAccount> accountCasinoMap = new HashMap<>();
+
     private List<CasinoAccount> casAcc = new ArrayList<>();
 
     /**
@@ -26,7 +26,7 @@ public class CasinoAccountManager {
             if (accountName.equals(casAccount.getAccountName()) && accountPassword.equals(casAccount.getAccountPassword())) {
                 return casAccount;
             } else {
-                System.out.println("Account and Password does not match! Please Try again");
+                System.out.println("Account or Password does not match! Please Try again");
             }
         }
         return null;
@@ -39,22 +39,24 @@ public class CasinoAccountManager {
      * @param accountPassword password of account to be created
      * @return new instance of `ArcadeAccount` with specified `accountName` and `accountPassword`
      */
-    public CasinoAccount createAccount(String accountName, String accountPassword) {
-        CasinoAccount newAcc = new CasinoAccount(accountName,accountPassword);
+    public CasinoAccount createAccount(String accountName, String accountPassword,Integer balance) {
+        CasinoAccount newAcc = new CasinoAccount(accountName,accountPassword,balance);
         registerAccount(newAcc);
         return newAcc;
     }
+//
+//    /**
+//     * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
+//     *
+//     * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
+//     */
+    public List<CasinoAccount> registerAccount(CasinoAccount newAcc) {
+//        casAcc.add(casinoAccount);
+//        String accountName = casinoAccount.getAccountName();
+        this.casAcc.add(newAcc);
 
-    /**
-     * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
-     *
-     * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
-     */
-    public void registerAccount(CasinoAccount casinoAccount) {
-        casAcc.add(casinoAccount);
-        String accountName = casinoAccount.getAccountName();
-        accountCasinoMap.put(accountName,casinoAccount);
-        System.out.println("Finished registering account " +accountName);
+        System.out.println("Finished registering account " +this.casAcc.get(0).getAccountName());
+        return this.casAcc;
     }
 
 }

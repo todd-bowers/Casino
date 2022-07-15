@@ -10,8 +10,9 @@ public class testCasinoAccount {
         //given
         String accountName = "Eugene";
         String accountPassword = "Shin";
+        Integer balance = 2000;
         //when
-        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword);
+        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword,balance);
         //then
         Assert.assertEquals(accountName,casinoAccount.getAccountName());
         Assert.assertEquals(accountPassword,casinoAccount.getAccountPassword());
@@ -22,8 +23,9 @@ public class testCasinoAccount {
         //given
         String accountName = "Eugene";
         String accountPassword = "Shin";
+        Integer balance = 2000;
         //when
-        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword);
+        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword,balance);
         String str = "Paul";
         casinoAccount.setAccountName(str);
         String actual = casinoAccount.getAccountName();
@@ -35,8 +37,9 @@ public class testCasinoAccount {
         //given
         String accountName = "Eugene";
         String accountPassword = "Shin";
+        Integer balance = 2000;
         //when
-        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword);
+        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword,balance);
         String str = "Kim";
         casinoAccount.setAccountPassword(str);
         String actual = casinoAccount.getAccountPassword();
@@ -49,9 +52,10 @@ public class testCasinoAccount {
         //given
         String accountName = "Eugene";
         String accountPassword = "Shin";
-        Integer balance = 0;
+        Integer balance = 2000;
+
         //when
-        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword);
+        CasinoAccount casinoAccount = new CasinoAccount(accountName, accountPassword,balance);
         Integer num = 2000;
         casinoAccount.setBalance(num);
         Integer actual = casinoAccount.getBalance();

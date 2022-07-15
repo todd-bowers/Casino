@@ -13,12 +13,14 @@ package com.github.zipcodewilmington.casino;
         public CasinoAccount () {
              this.accountName = "";
              this.accountPassword= "";
+             this.balance = 0;
 
         }
 
-        public CasinoAccount (String accountName, String accountPassword) {
+        public CasinoAccount (String accountName, String accountPassword,Integer balance) {
             this.accountName = accountName;
             this.accountPassword = accountPassword;
+            this.balance = balance;
 
         }
 
