@@ -184,6 +184,5 @@ public class Casino implements Runnable {
             //TODO need to figure out how to quit the whole game
         }
     }
-
 }
 

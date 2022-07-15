@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.casino.games.slots;
-
-public interface Card {
-}
+//package com.github.zipcodewilmington.casino.games.slots;
+//
+//public interface Card {
+//}
