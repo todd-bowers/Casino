@@ -21,5 +21,30 @@ public class BlackjackPlayer implements PlayerInterface {
         return null;
     }
 
+    @Override
+    public void Garbage() {
+
+    }
+
+    @Override
+    public void CasinoAccount() {
+
+    }
+
+    @Override
+    public void setBet() {
+
+    }
+
+    @Override
+    public void cashIn() {
+
+    }
+
+    @Override
+    public void cashOut() {
+
+    }
+
 }
 

@@ -23,4 +23,10 @@ public interface PlayerInterface {
      * @return whatever return value you would like
      */
     <SomeReturnType> SomeReturnType play();
+
+    void Garbage();
+    void CasinoAccount();
+    void setBet();
+    void cashIn();
+    void cashOut();
 }
