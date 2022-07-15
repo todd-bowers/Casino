@@ -1,11 +1,15 @@
 package com.github.zipcodewilmington.casino.games.card;
 
+import com.github.zipcodewilmington.utils.AnsiColor;
+import com.github.zipcodewilmington.utils.IOConsole;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
     private ArrayList<Card> hand = new ArrayList<>();
     private int numOfCards;
+    private final IOConsole console = new IOConsole(AnsiColor.AUTO);
 
     public Hand() {
 
@@ -16,11 +20,13 @@ public class Hand {
             this.hand.set(i, null);
         }
 //            return (this.getHandSum() <= 21);
-        }
+    }
 
     public void addCard (Card aCard){
         if (this.numOfCards < 10) {
+
             this.hand.add(aCard);
+            numOfCards++;
         } else {
             System.out.println(this.printHandLimitMessage());
         }
@@ -33,50 +39,57 @@ public class Hand {
         return "Too many cards";
     }
 
-        public int getHandSum () {
-            int handSum = 0;
-            int cardNum;
-            int numAces = 0;
+    public int getHandSum () {
+        int handSum = 0;
+        int cardNum;
+        int numAces = 0;
 
-            for (int i = 0; i < this.numOfCards; i++) {
-                cardNum = this.hand.get(i).getValue();
+        for (int i = 0; i < this.numOfCards; i++) {
+            cardNum = this.hand.get(i).getValue();
 
-                if (cardNum == 1) {
-                    numAces++;
+            if (cardNum == 1) {
+                int aceOrEleven = console.getIntegerInput("Enter 1 or 11 for your Ace value");
+                if (aceOrEleven == 11){
                     handSum += 11;
-                } else if (cardNum > 10) {
-                    handSum += 10;
-                } else {
-                    handSum += cardNum;
-                }
-            }
-            while (handSum > 21 && numAces > 0) {
-                handSum -= 10;
-                numAces--;
-            }
-            return handSum;
-        }
 
-        public void printHand( boolean showFirstCard){
+                } else if (aceOrEleven == 1){
+                    handSum += 1;
+                }
+
+            } else if (cardNum > 10) {
+                handSum += 10;
+            } else {
+                handSum += cardNum;
+            }
+        }
+//            while (handSum > 21) {
+//                handSum -= 10;
+//                numAces--;
+//            }
+        System.out.println(handSum);
+        return handSum;
+    }
+
+    public void printHand( boolean showFirstCard){
 //            System.out.println("%'s cards :\n", this.name);
-            for (int i = 0; i < this.numOfCards; i++) {
-                if (i == 0 && !showFirstCard) {
-                    System.out.println("  [hidden]  ");
-                } else {
-                    System.out.printf("   %s\n", this.hand.get(i).toString());
-                }
+        for (int i = 0; i < this.numOfCards; i++) {
+            if (i == 0 && !showFirstCard) {
+                System.out.println("  [hidden]  ");
+            } else {
+                System.out.printf("   %s\n", this.hand.get(i).toString());
             }
-
         }
 
+    }
 
-        public Integer handSize(){
-            return this.hand.size();
-        }
 
-        public List<Card> getCards(){
-            return this.hand;
-        }
+    public Integer handSize(){
+        return this.hand.size();
+    }
+
+    public List<Card> getCards(){
+        return this.hand;
+    }
 
     @Override
     public String toString() {
