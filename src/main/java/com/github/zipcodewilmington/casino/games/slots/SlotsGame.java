@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.slots;
 
+import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
@@ -18,17 +19,23 @@ public class SlotsGame extends CasinoAccountManager implements GameInterface {
 
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     public List<PlayerInterface> gambler = new ArrayList<>();
+    public List<PlayerInterface> leaveGame = new ArrayList<>();
+
+    private Integer balance;
     @Override
     public void add(PlayerInterface player) {
+
         player.getArcadeAccount();
-        int balance = player.getArcadeAccount().getBalance();
-        System.out.println("Your balance is " + balance);
+        this.balance = player.getArcadeAccount().getBalance();
+        System.out.println("Your balance is " + this.balance);
         gambler.add(player);
     }
 
     @Override
     public void remove(PlayerInterface player) {
-
+        gambler.get(0).getArcadeAccount().setBalance(this.balance);
+       Casino c = new Casino(player);
+       c.run();
     }
 
     @Override
@@ -43,7 +50,11 @@ public class SlotsGame extends CasinoAccountManager implements GameInterface {
                 this.slots(gambler.get(0));
             }
             String go = console.getStringInput("Would you like to continue playing?");
-            if (go.equals("no")) break;
+            if (go.equals("no")) {
+                this.remove(gambler.get(0));
+                break;
+            }
+
         }
     }
 

@@ -6,6 +6,7 @@ public class Card {
 
     private Suit suit;
     private Rank rank;
+    private boolean isFaceUp;
 
 
     public Card(Suit suit, Rank rank) {
@@ -27,7 +28,14 @@ public class Card {
 
     public String toString() {
         return ("[" + rank + " of " + suit + "] (" + this.getValue() + ")");
+    }
 
+    public boolean isFaceUp() {
+        return isFaceUp;
+    }
+
+    public void setFaceUp(boolean faceUp) {
+        isFaceUp = faceUp;
     }
 }
 

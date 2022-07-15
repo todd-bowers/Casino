@@ -13,7 +13,7 @@ import java.util.List;
  * it is advised that every instruction in this class is logged
  */
 public class CasinoAccountManager {
-    private List<CasinoAccount> casAcc = new ArrayList<>();
+    public List<CasinoAccount> casAcc = new ArrayList<>();
     private Integer balance;
 
     /**

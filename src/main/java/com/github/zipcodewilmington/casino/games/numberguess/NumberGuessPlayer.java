@@ -1,44 +1,20 @@
 package com.github.zipcodewilmington.casino.games.numberguess;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
-import com.github.zipcodewilmington.casino.PlayerInterface;
+
+
+import java.util.List;
+
 
 /**
  * Created by leon on 7/21/2020.
  */
-public class NumberGuessPlayer implements PlayerInterface {
-    @Override
-    public CasinoAccount getArcadeAccount() {
-        return null;
-    }
 
-    @Override
-    public <SomeReturnType> SomeReturnType play() {
-        return null;
-    }
+public class NumberGuessPlayer{
 
-    @Override
-    public void Garbage() {
+    public NumberGuessPlayer(){
+     //List<CasinoAccount> NumberGuessPlayer = new List<CasinoAccount>();
 
-    }
-
-    @Override
-    public void CasinoAccount() {
-
-    }
-
-    @Override
-    public void setBet() {
-
-    }
-
-    @Override
-    public void cashIn() {
-
-    }
-
-    @Override
-    public void cashOut() {
 
     }
 }

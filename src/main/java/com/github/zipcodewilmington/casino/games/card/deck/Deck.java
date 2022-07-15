@@ -85,6 +85,56 @@ public class Deck implements GameInterface {
 
     }
 
+    @Override
+    public void bet() {
+
+    }
+
+    @Override
+    public void continueGambling() {
+
+    }
+
+    @Override
+    public void lose() {
+
+    }
+
+    @Override
+    public void outcome() {
+
+    }
+
+    @Override
+    public void bonus() {
+
+    }
+
+    @Override
+    public void enterGame() {
+
+    }
+
+    @Override
+    public void kickout() {
+
+    }
+
+    @Override
+    public void account() {
+
+    }
+
+    @Override
+    public void moneyCheck() {
+
+    }
+
+    @Override
+    public void music() {
+
+    }
+
     public ArrayList<Card> getDeck() {
         return deck;
     }
