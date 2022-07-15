@@ -9,13 +9,6 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
  */
 public class NumberGuessGame {
 
-    NumberGuessPlayer player;
-
-
-    public void monkeyCards(){
-        System.out.println("Help");
-    }
-
 
 //    @Override
 //    public void add(PlayerInterface player) {

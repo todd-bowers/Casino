@@ -4,8 +4,6 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
-import com.github.zipcodewilmington.utils.AnsiColor;
-import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -15,6 +13,7 @@ import java.util.List;
  * Created by leon on 7/21/2020.
  */
 public class SlotsGame extends CasinoAccountManager implements GameInterface {
+
 
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     public List<PlayerInterface> gambler = new ArrayList<>();
@@ -57,16 +56,14 @@ public class SlotsGame extends CasinoAccountManager implements GameInterface {
 
     }
 
-    public String getResult(int[] pulled) {
-        if (pulled[0] == pulled[1] && pulled[0] == pulled[2]) return "bingo";
-        else if (pulled[0] == pulled[1] || pulled[1] == pulled[2]) return "bango";
-        else return "bongo";
+    @Override
+    public void enterGame() {
+
     }
 
-    public int setBet() {
-        String input = console.getStringInput("Input $1 to play!");
-        if (input.equals("1")) return 1;
-        else return 0;
+    @Override
+    public void kickout() {
+
     }
 
     public void win(PlayerInterface player, int winnings) {
