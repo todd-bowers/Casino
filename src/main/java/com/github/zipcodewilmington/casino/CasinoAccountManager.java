@@ -12,8 +12,9 @@ import java.util.logging.Logger;
  */
 public class CasinoAccountManager {
     private static Logger logger = Logger.getLogger(CasinoAccountManager.class.getName());
-    private HashMap<String, CasinoAccount> accountCasinoMap = new HashMap<>();
+    private HashMap<String, Integer> accountCasinoMap = new HashMap<>();
     private List<CasinoAccount> casAcc = new ArrayList<>();
+    private Integer balance;
 
     /**
      * @param accountName     name of account to be returned
@@ -38,8 +39,8 @@ public class CasinoAccountManager {
      * @param accountPassword password of account to be created
      * @return new instance of `ArcadeAccount` with specified `accountName` and `accountPassword`
      */
-    public CasinoAccount createAccount(String accountName, String accountPassword) {
-        CasinoAccount newAcc = new CasinoAccount(accountName,accountPassword);
+    public CasinoAccount createAccount(String accountName, String accountPassword, Integer balance) {
+        CasinoAccount newAcc = new CasinoAccount(accountName,accountPassword, balance);
         registerAccount(newAcc);
         return newAcc;
     }
@@ -48,11 +49,17 @@ public class CasinoAccountManager {
      * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
      *
      * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
+     * @param newAcc
      */
-    public void registerAccount(CasinoAccount casinoAccount) {
-        casAcc.add(casinoAccount);
-        String accountName = casinoAccount.getAccountName();
-        accountCasinoMap.put(accountName,casinoAccount);
-        System.out.println("Finished registering account " +accountName);
+    public List<CasinoAccount> registerAccount(CasinoAccount newAcc) {
+//        casAcc.add(casinoAccount);
+//        String accountName = casinoAccount.getAccountName();
+        this.casAcc.add(newAcc);
+
+        System.out.println("Finished registering account " + this.casAcc.get(0).getBalance());
+        return this.casAcc;
     }
+
+
+
 }
