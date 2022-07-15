@@ -14,7 +14,7 @@ public class NumberGuessGameTest {
 
         //Given
         int expected = NumberGuessGame.playerGuess;
-        int actual = NumberGuessGame.randomNumber;
+        int actual =                                                                                                                                                                                                                                                                                                                                       NumberGuessGame.randomNumber;
 
 
 //When
