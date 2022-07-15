@@ -24,4 +24,15 @@ public interface GameInterface extends Runnable {
      * specifies how the game will run
      */
     void run();
+
+    void bet();
+    void continueGambling();
+    void lose();
+    void outcome();
+    void bonus();
+    void enterGame();
+    void kickout();
+    void account();
+    void moneyCheck();
+    void music();
 }
