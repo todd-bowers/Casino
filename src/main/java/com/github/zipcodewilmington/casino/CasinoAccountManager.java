@@ -13,7 +13,6 @@ import java.util.List;
  * it is advised that every instruction in this class is logged
  */
 public class CasinoAccountManager {
-
     private List<CasinoAccount> casAcc = new ArrayList<>();
     private Integer balance;
 
@@ -67,10 +66,7 @@ public class CasinoAccountManager {
 //        casAcc.add(casinoAccount);
 //        String accountName = casinoAccount.getAccountName();
         this.casAcc.add(newAcc);
-
         System.out.println("Finished registering account " +this.casAcc.get(0).getAccountName());
         return this.casAcc;
     }
-
-
 }
