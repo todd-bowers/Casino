@@ -31,10 +31,10 @@ public class RouletteGame implements GameInterface {
         int bet;
         int betOption;
 
+        int selectNumber;
+
         int money = 1000;
         int roundCounter = 1;
-
-        int randomNumber = 0;
 
 
         private final IOConsole console = new IOConsole(AnsiColor.RED);
@@ -61,13 +61,22 @@ public class RouletteGame implements GameInterface {
                 bet = console.getIntegerInput("Please input the amount you desire to bet.");
 
                 betOption = console.getIntegerInput("Please select bet option");
+
                 if(bet == 0 && betOption != 0) {
                     bet = console.getIntegerInput("INVALID! Please input the amount you desire to bet.");
                     betOption = console.getIntegerInput("Please select bet option");
                 }
-                winningMethod();
+
+                if(betOption == 5){
+                    selectNumber = console.getIntegerInput("Please select a number 00 or 0 - 36");
+                }
+
+                RouletteBall ball;
+                ball = gen.generator();
+                winningMethod(bet, ball, selectNumber);
                 printHelp();
-                console.print("Results: " + gen.generator().getColor());
+
+                console.print("Results: " + ball.getColor());
 
                 console.print("Your bank account: " + money + "\n");
                 roundCounter++;
@@ -150,34 +159,29 @@ public class RouletteGame implements GameInterface {
             }
         }
 
-        public void winningMethod() {
-            //Bet is red and received a 1 : 1 payout.
-//        if(betOption.equals("1") && bet.equals(gen.generator())){
-//           bet += money;
+        public void winningMethod(int bet, RouletteBall ball, int selectNumber) {
+
             //Bet is red and receive a 1 : 1 payout.
-            if (betOption == 1 &&
-                    gen.generator().getColor().equals(gen.colorResult(gen.getNumber()))) this.money+=bet;
+            if (betOption == 1 && ball.getNumber() % 2 != 0) this.money+=bet;
             //Bet is black and receive a 1 : 1 payout.
-            if (betOption == 2 && gen.generator().equals("black")) money += bet;
+            else if (betOption == 2 && ball.getNumber() % 2 == 0) this.money+=bet;
             //Bet is odd and receive a 1 : 1 payout.
-            if (betOption == 3 && gen.generator().equals("odd")) money += bet;
+            else if (betOption == 3 && ball.getNumber() % 2 != 0) this.money+=bet;
             //Bet is even and receive a 1 : 1 payout.
-            if (betOption == 4 && gen.generator().equals("even")) money += bet;
+            else if (betOption == 4 && ball.getNumber() % 2 == 0) this.money+=bet;
             //Bet is Single Number and receive a 35 : 1 payout.
-            if (betOption == 5 && gen.generator().equals("single number")) money += bet * 35;
+            else if (betOption == 5 && ball.getNumber() == selectNumber) money += bet * 35;
             //Bet is First Twelve and receive a 2 : 1 payout.
-            if (betOption == 6 && gen.generator().equals("First Twelve")) money += bet * 2;
+            else if (betOption == 6 && ball.getNumber() >= 1 && ball.getNumber() <= 12) money += bet * 2;
             //Bet is Second Twelve and receive a 2 : 1 payout.
-            if (betOption == 7 && gen.generator().equals("Second Twelve")) money += bet * 2;
+            else if (betOption == 7 && ball.getNumber() >= 13 && ball.getNumber() <= 24) money += bet * 2;
             //Bet is Third Twelve and receive a 2 : 1 payout.
-            if (betOption == 8 && gen.generator().equals("Third Twelve")) money += bet * 2;
+            else if (betOption == 8 && ball.getNumber() >= 25 && ball.getNumber() <= 36) money += bet * 2;
             //Bet is No. 1 - 18 and receive a 1 : 1 payout.
-            if (betOption == 9 && gen.generator().equals("No.1 -18")) money += bet;
+            else if (betOption == 9 && ball.getNumber() >= 1 && ball.getNumber() <= 18) money += bet;
             //Bet is No. 19 - 36 and receive a 1 : 1 payout.
-            if (betOption == 10 && gen.generator().equals("No. 19 - 36")) money += bet;
+            else if (betOption == 10 && ball.getNumber() >= 19 && ball.getNumber() <= 36) money += bet;
                 //Lose bet
             else money -= bet;
         }
-//    public void setBet(){
-//        bet = console.getStringInput("Please input the amount you desire to bet.");}
     }
