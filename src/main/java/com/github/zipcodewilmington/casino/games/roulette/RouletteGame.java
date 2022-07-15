@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
+import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -9,8 +10,22 @@ import javax.xml.crypto.NoSuchMechanismException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class RouletteGame implements GameInterface {
+public class RouletteGame extends CasinoAccountManager implements GameInterface {
 
+//    Scanner input = new Scanner(System.in);
+    int bet;
+    int betOption;
+
+    int selectNumber;
+
+    int money = 1000;
+    int roundCounter = 1;
+
+
+    private final IOConsole console = new IOConsole(AnsiColor.RED);
+    private final IOConsole consoleASCII = new IOConsole(AnsiColor.GREEN);
+
+    public LinkedList<RoulettePlayer> roulettePlayers = new LinkedList<>();
     BallNumberGenerator gen = new BallNumberGenerator() {
                 @Override
         public void add(PlayerInterface player) {
@@ -27,19 +42,7 @@ public class RouletteGame implements GameInterface {
 
         }
     };
-        Scanner input = new Scanner(System.in);
-        int bet;
-        int betOption;
 
-        int selectNumber;
-
-        int money = 1000;
-        int roundCounter = 1;
-
-
-        private final IOConsole console = new IOConsole(AnsiColor.RED);
-
-        public LinkedList<RoulettePlayer> roulettePlayers = new LinkedList<>();
 
         @Override
         public void add(PlayerInterface player) {
@@ -54,6 +57,21 @@ public class RouletteGame implements GameInterface {
         @Override
         public void run() throws NumberFormatException {
 
+            try {
+                welcome();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                to();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                asciiRoulette();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             printSummary();
 
 
@@ -63,6 +81,10 @@ public class RouletteGame implements GameInterface {
                 betOption = console.getIntegerInput("Please select bet option");
 
                 if(bet == 0 && betOption != 0) {
+                    bet = console.getIntegerInput("INVALID! Please input the amount you desire to bet.");
+                    betOption = console.getIntegerInput("Please select bet option");
+                }
+                if(betOption> 10 ) {
                     bet = console.getIntegerInput("INVALID! Please input the amount you desire to bet.");
                     betOption = console.getIntegerInput("Please select bet option");
                 }
@@ -233,5 +255,62 @@ public class RouletteGame implements GameInterface {
             else if (betOption == 10 && ball.getNumber() >= 19 && ball.getNumber() <= 36) money += bet;
                 //Lose bet
             else money -= bet;
+        }
+
+        public void welcome() throws InterruptedException {
+            consoleASCII.print("                                                                                        \n" +
+                    "     ##### /    ##   ###            ###                                                 \n" +
+                    "  ######  /  #####    ###            ###                                                \n" +
+                    " /#   /  /     #####   ###            ##                                                \n" +
+                    "/    /  ##     # ##      ##           ##                                                \n" +
+                    "    /  ###     #         ##           ##                                                \n" +
+                    "   ##   ##     #         ##    /##    ##      /###      /###   ### /### /###     /##    \n" +
+                    "   ##   ##     #         ##   / ###   ##     / ###  /  / ###  / ##/ ###/ /##  / / ###   \n" +
+                    "   ##   ##     #         ##  /   ###  ##    /   ###/  /   ###/   ##  ###/ ###/ /   ###  \n" +
+                    "   ##   ##     #         ## ##    ### ##   ##        ##    ##    ##   ##   ## ##    ### \n" +
+                    "   ##   ##     #         ## ########  ##   ##        ##    ##    ##   ##   ## ########  \n" +
+                    "    ##  ##     #         ## #######   ##   ##        ##    ##    ##   ##   ## #######   \n" +
+                    "     ## #      #         /  ##        ##   ##        ##    ##    ##   ##   ## ##        \n" +
+                    "      ###      /##      /   ####    / ##   ###     / ##    ##    ##   ##   ## ####    / \n" +
+                    "       #######/ #######/     ######/  ### / ######/   ######     ###  ###  ### ######/  \n" +
+                    "         ####     ####        #####    ##/   #####     ####       ###  ###  ### #####   \n");
+            Thread.sleep(1000);
+        }
+        public void to() throws InterruptedException {
+            consoleASCII.print("                                     #                                                  \n" +
+                    "                                    ##                                                  \n" +
+                    "                                    ##                                                  \n" +
+                    "                                  ######## /###                                         \n" +
+                    "                                 ######## / ###  /                                      \n" +
+                    "                                    ##   /   ###/                                       \n" +
+                    "                                    ##  ##    ##                                        \n" +
+                    "                                    ##  ##    ##                                        \n" +
+                    "                                    ##  ##    ##                                        \n" +
+                    "                                    ##  ##    ##                                        \n" +
+                    "                                    ##  ##    ##                                        \n" +
+                    "                                    ##   ######                                         \n" +
+                    "                                     ##   ####                                          \n" +
+                    "                                                                                        \n");
+            Thread.sleep(1000);
+        }
+        public void asciiRoulette() throws InterruptedException {
+            consoleASCII.print("     ##### /##                        ###                                               \n" +
+                    "  ######  / ##                         ###                                              \n" +
+                    " /#   /  /  ##                          ##               #        #                     \n" +
+                    "/    /  /   ##                          ##              ##       ##                     \n" +
+                    "    /  /    /                           ##              ##       ##                     \n" +
+                    "   ## ##   /       /###   ##   ####     ##      /##   ######## ######## /##             \n" +
+                    "   ## ##  /       / ###  / ##    ###  / ##     / ### ######## ######## / ###            \n" +
+                    "   ## ###/       /   ###/  ##     ###/  ##    /   ###   ##       ##   /   ###           \n" +
+                    "   ## ##  ###   ##    ##   ##      ##   ##   ##    ###  ##       ##  ##    ###          \n" +
+                    "   ## ##    ##  ##    ##   ##      ##   ##   ########   ##       ##  ########           \n" +
+                    "   #  ##    ##  ##    ##   ##      ##   ##   #######    ##       ##  #######            \n" +
+                    "      /     ##  ##    ##   ##      ##   ##   ##         ##       ##  ##                 \n" +
+                    "  /##/      ### ##    ##   ##      /#   ##   ####    /  ##       ##  ####    /          \n" +
+                    " /  ####    ##   ######     ######/ ##  ### / ######/   ##       ##   ######/           \n" +
+                    "/    ##     #     ####       #####   ##  ##/   #####     ##       ##   #####            \n" +
+                    "#                                                                                       \n" +
+                    " ##                                                                                     \n");
+            Thread.sleep(1000);
         }
     }
