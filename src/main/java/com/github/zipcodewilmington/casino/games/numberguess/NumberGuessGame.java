@@ -12,7 +12,7 @@ public class NumberGuessGame {
 //Start game(user presses space bar)
 // Exit game(user presses delete)
     //if player starts game, "welcome player"
-    //ask player to pick a number btwn 2-12(user presses numbers on keyboard)
+    //ask player to pick a number btwn 1-12(user presses numbers on keyboard)
     //player will be informed that they have max of 3 rounds "You will have a total of three guesses"
     //player will roll dice"player press enter to activate random number generator aka dice"
     //if the sum of the dice roll is higher than the secret number, print "Too high, try again!"
