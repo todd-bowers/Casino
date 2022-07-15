@@ -1,6 +1,4 @@
 package com.github.zipcodewilmington;
-
-
 import com.github.zipcodewilmington.casino.games.roulette.RouletteBall;
 import com.github.zipcodewilmington.casino.games.roulette.RouletteGame;
 

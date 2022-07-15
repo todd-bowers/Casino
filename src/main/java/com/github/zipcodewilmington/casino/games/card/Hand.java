@@ -20,6 +20,7 @@ public class Hand {
 
     public void addCard (Card aCard){
         if (this.numOfCards < 10) {
+
             this.hand.add(aCard);
         } else {
             System.out.println(this.printHandLimitMessage());
