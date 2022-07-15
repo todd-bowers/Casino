@@ -21,12 +21,12 @@ import java.util.List;
 public class Casino implements Runnable {
 
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
-    CasinoAccountManager casinoAccount = new CasinoAccountManager();
+    CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
     private String name;
     private Integer balance;
     List<CasinoAccount> casinoList;
     boolean quit;
-    CasinoAccount casinoAcc;
+    CasinoAccount casinoAccount;
 
 
     @Override
@@ -36,11 +36,11 @@ public class Casino implements Runnable {
             String accountName = console.getStringInput("Enter a name for your account:");
             String accountPassword = console.getStringInput("Enter a password for your account");
             Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
-            CasinoAccount CasinoAccount = casinoAccount.createAccount(accountName, accountPassword, accountBalance);
+            CasinoAccount casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
 //            casinoAccount.registerAccount(CasinoAccount);
 
             if(getGameSelectionInput().equalsIgnoreCase("SLOTS")) {
-               this.play(new SlotsGame(), new SlotsPlayer(CasinoAccount));
+               this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
 
             }
 
@@ -146,6 +146,10 @@ public class Casino implements Runnable {
 
     public void play(Object gameObject, Object playerObject) {
         GameInterface game = (GameInterface)gameObject;
+//        for (PlayerInterface player : casAcc) {
+//            PlayerInterface player = (PlayerInterface)playerObject;
+//            game.add(player);
+//        }
         PlayerInterface player = (PlayerInterface)playerObject;
         game.add(player);
         game.run();
