@@ -23,8 +23,11 @@ public class SlotsPlayer extends CasinoAccountManager implements PlayerInterface
 
     }
 
+
+
     @Override
     public CasinoAccount getArcadeAccount() {
+
         return (CasinoAccount) this.casinoAccount;
     }
 
