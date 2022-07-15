@@ -15,6 +15,7 @@ import java.util.List;
 public class CasinoAccountManager {
 
     private List<CasinoAccount> casAcc = new ArrayList<>();
+    private Integer balance;
 
     /**
      * @param accountName     name of account to be returned
@@ -39,6 +40,7 @@ public class CasinoAccountManager {
      * @param accountPassword password of account to be created
      * @return new instance of `ArcadeAccount` with specified `accountName` and `accountPassword`
      */
+
     public CasinoAccount createAccount(String accountName, String accountPassword,Integer balance) {
         CasinoAccount newAcc = new CasinoAccount(accountName,accountPassword,balance);
         registerAccount(newAcc);
@@ -55,8 +57,20 @@ public class CasinoAccountManager {
 //        String accountName = casinoAccount.getAccountName();
         this.casAcc.add(newAcc);
 
+    /**
+     * logs & registers a new `ArcadeAccount` to `this.getArcadeAccountList()`
+     *
+     * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
+     * @param newAcc
+     */
+    public List<CasinoAccount> registerAccount(CasinoAccount newAcc) {
+//        casAcc.add(casinoAccount);
+//        String accountName = casinoAccount.getAccountName();
+        this.casAcc.add(newAcc);
+
         System.out.println("Finished registering account " +this.casAcc.get(0).getAccountName());
         return this.casAcc;
     }
+
 
 }
