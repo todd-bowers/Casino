@@ -5,6 +5,7 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import javax.xml.crypto.NoSuchMechanismException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -60,7 +61,10 @@ public class RouletteGame implements GameInterface {
                 bet = console.getIntegerInput("Please input the amount you desire to bet.");
 
                 betOption = console.getIntegerInput("Please select bet option");
-
+                if(bet == 0 && betOption != 0) {
+                    bet = console.getIntegerInput("INVALID! Please input the amount you desire to bet.");
+                    betOption = console.getIntegerInput("Please select bet option");
+                }
                 winningMethod();
                 printHelp();
                 console.print("Results: " + gen.generator().getColor());
@@ -71,6 +75,8 @@ public class RouletteGame implements GameInterface {
                 console.print("Rounds: " + roundCounter + "\n");
 
                 if (money <= 0)
+                    break;
+                if(bet == 0 && betOption != 0)
                     break;
             }
 
@@ -110,7 +116,7 @@ public class RouletteGame implements GameInterface {
         }
 
         public void printHelp() {
-            if (betOption == 0) {
+            if (betOption == 0 && bet == 0) {
                 System.out.println("Here is the help desk.");
                 System.out.println("Below is the pay out of your desired option.");
                 System.out.println("+----------------------------------------------------+");
@@ -136,7 +142,7 @@ public class RouletteGame implements GameInterface {
                 System.out.println("+----------------------------------------------------+");
                 System.out.println("| [10] No. 19 - 36 | 1 : 1           | ~31.5         |");
                 System.out.println("+----------------------------------------------------+");
-                System.out.println("| [0] Type 0 [help] for further assistance           |");
+                System.out.println("| [0] Type 0 [ for help] in both inputs              |");
                 System.out.println("+----------------------------------------------------+");
                 System.out.println("                                                      ");
                 System.out.println("Please decide how much you want to bet and chose bet. ");
@@ -149,35 +155,28 @@ public class RouletteGame implements GameInterface {
 //        if(betOption.equals("1") && bet.equals(gen.generator())){
 //           bet += money;
             //Bet is red and receive a 1 : 1 payout.
-//        if(betOption.equals("1") && generator().equals("red"))  bet += money;
-
-//            RouletteBall results = new RouletteBall();
-
-
-            if (betOption == 1 /* && gen.generator().equals(gen.colorResult(' '))*/)
-
-                this.money-=bet;
-
+            if (betOption == 1 &&
+                    gen.generator().getColor().equals(gen.colorResult(gen.getNumber()))) this.money+=bet;
             //Bet is black and receive a 1 : 1 payout.
-            if (betOption == 2 && gen.generator().equals("black")) bet += money;
+            if (betOption == 2 && gen.generator().equals("black")) money += bet;
             //Bet is odd and receive a 1 : 1 payout.
-            if (betOption == 3 && gen.generator().equals("odd")) bet += money;
+            if (betOption == 3 && gen.generator().equals("odd")) money += bet;
             //Bet is even and receive a 1 : 1 payout.
-            if (betOption == 4 && gen.generator().equals("even")) bet += money;
+            if (betOption == 4 && gen.generator().equals("even")) money += bet;
             //Bet is Single Number and receive a 35 : 1 payout.
-            if (betOption == 5 && gen.generator().equals("single number")) (bet) += money;
+            if (betOption == 5 && gen.generator().equals("single number")) money += bet * 35;
             //Bet is First Twelve and receive a 2 : 1 payout.
-            if (betOption == 6 && gen.generator().equals("First Twelve")) bet += money;
+            if (betOption == 6 && gen.generator().equals("First Twelve")) money += bet * 2;
             //Bet is Second Twelve and receive a 2 : 1 payout.
-            if (betOption == 7 && gen.generator().equals("Second Twelve")) bet += money;
+            if (betOption == 7 && gen.generator().equals("Second Twelve")) money += bet * 2;
             //Bet is Third Twelve and receive a 2 : 1 payout.
-            if (betOption == 8 && gen.generator().equals("Third Twelve")) bet += money;
+            if (betOption == 8 && gen.generator().equals("Third Twelve")) money += bet * 2;
             //Bet is No. 1 - 18 and receive a 1 : 1 payout.
-            if (betOption == 9 && gen.generator().equals("No.1 -18")) bet += money;
+            if (betOption == 9 && gen.generator().equals("No.1 -18")) money += bet;
             //Bet is No. 19 - 36 and receive a 1 : 1 payout.
-            if (betOption == 10 && gen.generator().equals("No. 19 - 36")) bet += money;
+            if (betOption == 10 && gen.generator().equals("No. 19 - 36")) money += bet;
                 //Lose bet
-            else bet -= money;
+            else money -= bet;
         }
 //    public void setBet(){
 //        bet = console.getStringInput("Please input the amount you desire to bet.");}
