@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class MainApplication {
     public static void main(String[] args) {
-        new Casino().run();
         RouletteGame game = new RouletteGame();
         game.run();
 //        new Casino().run();
