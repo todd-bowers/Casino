@@ -4,60 +4,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
-    Hand dealer;
-    Hand player;
+    private ArrayList<Card> hand  = new ArrayList<>();
+    private int numOfCards;
 
     public Hand() {
-        this.initializeHand();
-
-
-
+        this.emptyHand();
     }
-
-    private void initializeHand() {
-        }
-
-
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-
-
-//    public void setHand(int hand) {
-//        this.hand = hand;
-//    }
-
-    private ArrayList<Card> cards;
-
-    private int getHand() {
-        List<Integer> totals = new ArrayList<>();
-        totals.add(0);
-
-        for (Card card : cards) {
-            List<Integer> newTotals = new ArrayList();
-            for (int score : totals) {
-                newTotals.add(card.getValue() + score);
-                if (card.getValue() == 1) {
-                    newTotals.add(11 + score);
-                }
+        
+        public void emptyHand(){
+            for(int i = 0, i < 10; i++){
+                this.hand[i] = null;
             }
-            totals = newTotals;
-        }
-        return this.getHand();
-    }
-
-        public void Hand(){
-//            this.cards = new ArrayList<Card>();
-//            this.cards.add(c1);
-//            this.cards.add(c2);
-
         }
 
+        public boolean addCard(Card aCard){
+        if(this.numOfCards == 10){
+            System.exit(1);
+        }
+        this.hand.set(this.numOfCards, aCard);
+        this.numOfCards++;
+
+        }
+
+        return (this.getHandSum() <= 21);
+
+    public int getHandSum(){
+        int handSum = 0;
+        int cardNum;
+        int numAces = 0;
+
+        for (int i = 0; i < this.numOfCards; i++) {
+            cardNum = this.hand[i].getNumber();
+
+            if (cardNum == 1) {
+                numAces++;
+                handSum += 11;
+            } else if (cardNum > 10) {
+                handSum += 10;
+            } else {
+                handSum += cardNum;
+            }
+        }
+            return handSum;
+        }
 
 
 
     }
+
+
+
+}
 
 
 

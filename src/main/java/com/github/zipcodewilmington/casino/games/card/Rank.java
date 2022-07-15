@@ -1,7 +1,7 @@
 package com.github.zipcodewilmington.casino.games.card;
 
 public enum Rank {
-    ACE("Ace", 11),
+    ACE("Ace", 1),
     TWO("Two", 2),
     THREE("Three", 3),
     FOUR("Four", 4),
