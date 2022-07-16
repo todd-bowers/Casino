@@ -57,8 +57,10 @@ public class CasinoAccountManagarPractice {
 //        casAcc.add(casinoAccount);
 //        String accountName = casinoAccount.getAccountName();
         this.casAcc.add(newAcc);
-        System.out.println("Finished registering account " + this.casAcc.get(0).getAccountName());
-//        if()
+        for(int i =0; i<this.casAcc.size(); i++) {
+            System.out.println("Finished registering account " + this.casAcc.get(i).getAccountName());
+        }
+
         writeToFile();
         return this.casAcc;
     }
@@ -66,8 +68,6 @@ public class CasinoAccountManagarPractice {
     public void writeToFile(){
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter("Login.txt"));
-
-
             for(CasinoAccountPractice casinoAccount: this.casAcc){
                 writer.write("\n" + casinoAccount.getAccountName() + "," + casinoAccount.getAccountPassword() + "," + casinoAccount.getBalance());
             }

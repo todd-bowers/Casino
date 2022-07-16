@@ -7,6 +7,12 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.PracticeGamesAndPlayerClasses.*;
 import com.github.zipcodewilmington.casino.games.blackjack.BlackjackGame;
 import com.github.zipcodewilmington.casino.games.blackjack.BlackjackPlayer;
+import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
+import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
+import com.github.zipcodewilmington.casino.games.roulette.RouletteGame;
+import com.github.zipcodewilmington.casino.games.roulette.RoulettePlayer;
+import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
+import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
@@ -53,16 +59,16 @@ public class Casino implements Runnable {
             while(game) {
                 String gameSelection = getGameSelectionInput();
                 if (gameSelection.equalsIgnoreCase("SLOTS")) {
-                    this.play(new SlotsPracticeGame(), new SlotsPracticePlayer(casinoAccount));
+                    this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
                     game = false;
                 } else if (gameSelection.equalsIgnoreCase("BLACKJACK")){
-                    this.play(new BlackPracticeGame(), new BlackJackPlayerPractice(casinoAccount));
+                    this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
                     game = false;
                 } else if (gameSelection.equalsIgnoreCase("ROULETTE")){
-                    this.play(new RouletteGamePractice(), new RoulettePlayerPractice(casinoAccount));
+//                    this.play(new RouletteGame(), new RoulettePlayer(casinoAccount));
                     game = false;
                 } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")){
-                    this.play(new NumberGuessGamePractice(), new NumberGuessPlayerPractice(casinoAccount));
+//                    this.play(new NumberGuessGame(), new NumberGuessPlayer(casinoAccount));
                     game = false;
                 }else if (getGameSelectionInput().equalsIgnoreCase("WAR")){
 //                    this.play()
