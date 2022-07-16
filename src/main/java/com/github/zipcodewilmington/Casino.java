@@ -79,9 +79,6 @@ public class Casino implements Runnable {
                     console.getStringInput("Please select a game to play");
                 }
             }
-            else if (getGameSelectionInput().equalsIgnoreCase("WAR")) {
-                this.play(new WarGame(), new WarGamePlayer(casinoAccount));
-            }
 
 
         }
