@@ -28,7 +28,6 @@ public class NumberGuessGame {
     public static void main(String[] args) {
 
 
-    public static void main(String[] args) {
 
         Random rand = new Random();
         int randomNumber = rand.nextInt(11) + 2;
