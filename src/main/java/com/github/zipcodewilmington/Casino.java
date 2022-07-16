@@ -8,6 +8,8 @@ import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
+import com.github.zipcodewilmington.casino.games.war.WarGame;
+import com.github.zipcodewilmington.casino.games.war.WarGamePlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
@@ -55,6 +57,10 @@ public class Casino implements Runnable {
             if(getGameSelectionInput().equalsIgnoreCase("SLOTS")) {
                this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
             }
+            else if (getGameSelectionInput().equalsIgnoreCase("WAR")) {
+                this.play(new WarGame(), new WarGamePlayer(casinoAccount));
+            }
+
 
 
         }
@@ -153,7 +159,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ BLACKJACK ], [ ROULETTE ]")
+                .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ BLACKJACK ], [ ROULETTE ],[ WAR ]")
                 .toString());
     }
 
