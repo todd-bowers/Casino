@@ -21,7 +21,8 @@ public abstract class BallNumberGenerator extends RouletteBall{
         Random random = new Random();
         int ballNumber = random.nextInt(38);
 //        if (ballNumber == 37){ //37 --> '00'
-//            System.out.print("00");
+//            String zer00 = "00";
+//            int ball37 = Integer.parseInt(zer00);
 //        }
         results.setNumber(ballNumber);
         results.setColor(colorResult(ballNumber));
@@ -34,7 +35,7 @@ public abstract class BallNumberGenerator extends RouletteBall{
         if(numLandedOn == 0)
             color = ("Green " + numLandedOn + "\n");
         else if(numLandedOn == 37) //37 --> '00'
-            color = ("Green " + "00\n");
+            color = ("Green " + numLandedOn + "\n");
         else if (numLandedOn % 2 == 0)
             color = ("Black " + numLandedOn + "\n");
         else

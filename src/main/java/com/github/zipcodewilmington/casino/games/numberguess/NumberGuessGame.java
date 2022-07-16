@@ -10,7 +10,8 @@ public class NumberGuessGame {
 
     public static int playerGuess;
     public static int randomNumber;
-    Scanner playerObject = new Scanner(System.in);//for user input
+    Scanner playerObject = new Scanner(System.in);
+
     String playerName;
     //Prompt for game menu
 //Start game
@@ -26,27 +27,36 @@ public class NumberGuessGame {
 //After Game Over, prompt player back to Main Menu 1
     public static void main(String[] args) {
 
+
+    public static void main(String[] args) {
+
         Random rand = new Random();
-        int randomNumber = rand.nextInt(12) + 1;
+        int randomNumber = rand.nextInt(11) + 2;
         System.out.println("Random number is a secret");
         Scanner scanner = new Scanner((System.in));
-        System.out.println("Pick a number between 0 and 12: ");
+        System.out.println("Pick a number between 2 and 12: ");
 
+        int counter = 0;
+
+ 
 
         while (true) {
             int playerGuess = scanner.nextInt();
             if (playerGuess == randomNumber) {
                 System.out.println("Congratulations! You win!");
+
+                System.out.println("It took you " + counter + " tries");
                 break;
-            } else if (playerGuess < randomNumber) {
-                System.out.println("Too low, guess again!");
 
             } else {
-                System.out.println("Too high, guess again!");
+                System.out.println("Nope, guess again!");
+                counter++;
+
             }
 
         }
 
     }
+
 }
-  
+
