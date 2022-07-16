@@ -15,6 +15,9 @@ public class WarGamePracticePlayer implements PlayerInterface {
         this.balance = casinoAccount.getBalance();
 
     }
+    public CasinoAccountPractice getArcadeAccount1() {
+        return (CasinoAccountPractice) this.casinoAccount;
+    }
 
     @Override
     public CasinoAccount getArcadeAccount() {

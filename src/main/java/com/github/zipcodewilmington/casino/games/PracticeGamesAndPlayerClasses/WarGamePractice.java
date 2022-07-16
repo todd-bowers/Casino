@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.PracticeGamesAndPlayerClasses;
 
+import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.casino.CasinoAccountPractice;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
@@ -12,6 +13,7 @@ import com.github.zipcodewilmington.utils.IOConsole;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class WarGamePractice implements GameInterface {
 
@@ -20,6 +22,7 @@ public class WarGamePractice implements GameInterface {
     public ArrayDeque<Card> dealerHand = new ArrayDeque<>();
     public ArrayDeque<Card> playerHand = new ArrayDeque<>();
     public ArrayDeque<Card> fieldDeck = new ArrayDeque<>();
+    public List<PlayerInterface> gambler = new ArrayList<>();
 
     public WarGamePractice(){
 
@@ -142,16 +145,20 @@ public class WarGamePractice implements GameInterface {
 
     }
 
+
     @Override
     public void add(PlayerInterface player) {
         player.getArcadeAccount();
         this.balance = player.getArcadeAccount().getBalance();
         System.out.println("Starting balance is " + this.balance);
-
+        gambler.add(player);
     }
 
     @Override
     public void remove(PlayerInterface player) {
+        gambler.get(0).getArcadeAccount().setBalance(this.balance);
+        Casino c = new Casino(player);
+        c.run();
     }
 
     @Override
