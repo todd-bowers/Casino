@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.casino;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class CasinoAccountManagarPractice {
     public List<CasinoAccountPractice> casAcc = new ArrayList<>();
     private Integer balance;
 
+    private File newFile = new File("Login2.txt");
 
     /**
      * @param accountName     name of account to be returned
@@ -60,21 +62,26 @@ public class CasinoAccountManagarPractice {
         for(int i =0; i<this.casAcc.size(); i++) {
             System.out.println("Finished registering account " + this.casAcc.get(i).getAccountName());
         }
-
         writeToFile();
         return this.casAcc;
     }
 
     public void writeToFile(){
-        try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter("Login.txt"));
-            for(CasinoAccountPractice casinoAccount: this.casAcc){
-                writer.write("\n" + casinoAccount.getAccountName() + "," + casinoAccount.getAccountPassword() + "," + casinoAccount.getBalance());
+        if(newFile.length() == 0) {
+            try{
+                BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
+                for(CasinoAccountPractice casinoAccount: this.casAcc){
+                    writer.write("\n" + casinoAccount.getAccountName() + "," + casinoAccount.getAccountPassword() + "," + casinoAccount.getBalance());
+                }
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        } else if (newFile.length()!=0 && newFile.equals(casAcc.get(0))){
+            System.out.println("Wrong");
+        }
         }
 
     }
-}
+

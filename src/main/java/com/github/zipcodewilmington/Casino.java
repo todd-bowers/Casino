@@ -31,7 +31,6 @@ public class Casino implements Runnable {
     List<CasinoAccount> casinoList;
     boolean quit;
     CasinoAccount casinoAccount;
-    private static final String filepath="/Users/fitru/CasinoLabPartII/Casino/HoldAccounts.txt";
 
     public Casino(PlayerInterface player){
         player.getArcadeAccount();
@@ -62,7 +61,7 @@ public class Casino implements Runnable {
                     this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
                     game = false;
                 } else if (gameSelection.equalsIgnoreCase("BLACKJACK")){
-                    this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
+//                    this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
                     game = false;
                 } else if (gameSelection.equalsIgnoreCase("ROULETTE")){
 //                    this.play(new RouletteGame(), new RoulettePlayer(casinoAccount));
