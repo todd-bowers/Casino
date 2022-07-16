@@ -4,17 +4,13 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
-import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
-import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
-import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
-import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
+import com.github.zipcodewilmington.casino.games.PracticeGamesAndPlayerClasses.*;
+import com.github.zipcodewilmington.casino.games.blackjack.BlackjackGame;
+import com.github.zipcodewilmington.casino.games.blackjack.BlackjackPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,7 +27,6 @@ public class Casino implements Runnable {
     CasinoAccount casinoAccount;
     private static final String filepath="/Users/fitru/CasinoLabPartII/Casino/HoldAccounts.txt";
 
-
     public Casino(PlayerInterface player){
         player.getArcadeAccount();
     }
@@ -41,21 +36,42 @@ public class Casino implements Runnable {
     }
     @Override
     public void run() {
+//        if(getArcadeDashboardInput().equalsIgnoreCase("login")){
+//
+//        }
+
+
         if(getArcadeDashboardInput().equalsIgnoreCase("create-account")) {
 
             String accountName = console.getStringInput("Enter a name for your account:");
             String accountPassword = console.getStringInput("Enter a password for your account");
             Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
+
             CasinoAccount casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
-
-//            casinoAccount.registerAccount(CasinoAccount);
-
-
-
-            if(getGameSelectionInput().equalsIgnoreCase("SLOTS")) {
-               this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
+            //            casinoAccount.registerAccount(CasinoAccount);
+            boolean game = true;
+            while(game) {
+                String gameSelection = getGameSelectionInput();
+                if (gameSelection.equalsIgnoreCase("SLOTS")) {
+                    this.play(new SlotsPracticeGame(), new SlotsPracticePlayer(casinoAccount));
+                    game = false;
+                } else if (gameSelection.equalsIgnoreCase("BLACKJACK")){
+                    this.play(new BlackPracticeGame(), new BlackJackPlayerPractice(casinoAccount));
+                    game = false;
+                } else if (gameSelection.equalsIgnoreCase("ROULETTE")){
+                    this.play(new RouletteGamePractice(), new RoulettePlayerPractice(casinoAccount));
+                    game = false;
+                } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")){
+                    this.play(new NumberGuessGamePractice(), new NumberGuessPlayerPractice(casinoAccount));
+                    game = false;
+                }else if (getGameSelectionInput().equalsIgnoreCase("WAR")){
+//                    this.play()
+                } else if (getGameSelectionInput().equalsIgnoreCase("CRAPS")){
+//                    this.play()
+                } else {
+                    console.getStringInput("Please select a game to play");
+                }
             }
-
 
         }
 
@@ -146,7 +162,7 @@ public class Casino implements Runnable {
     private String getArcadeDashboardInput() {
         return console.getStringInput("Welcome to the Arcade Dashboard!" +
                 "\nFrom here, you can select any of the following options:" +
-                "\n\t[ create-account ], [ select-game ]");
+                "\n\t[ create-account ], [ select-game ], [login/logout]");
     }
 
     private String getGameSelectionInput() {
