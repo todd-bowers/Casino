@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.casino.games.PracticeGamesAndPlayerClasses;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.CasinoAccountPractice;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
 public class WarGamePracticePlayer implements PlayerInterface {
@@ -9,7 +10,7 @@ public class WarGamePracticePlayer implements PlayerInterface {
 
     Integer balance;
 
-    public WarGamePracticePlayer(CasinoAccount casinoAccount) {
+    public WarGamePracticePlayer(CasinoAccountPractice casinoAccount) {
         this.casinoAccount = casinoAccount;
         this.balance = casinoAccount.getBalance();
 

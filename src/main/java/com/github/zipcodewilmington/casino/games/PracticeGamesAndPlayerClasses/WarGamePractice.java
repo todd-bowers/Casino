@@ -21,7 +21,7 @@ public class WarGamePractice implements GameInterface {
     public ArrayDeque<Card> playerHand = new ArrayDeque<>();
     public ArrayDeque<Card> fieldDeck = new ArrayDeque<>();
 
-    public WarGamePractice(CasinoAccountPractice casinoAccountPractice){
+    public WarGamePractice(){
 
     }
 
