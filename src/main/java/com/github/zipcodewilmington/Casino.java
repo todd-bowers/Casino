@@ -19,6 +19,7 @@ import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,13 +31,14 @@ public class Casino extends CasinoAccountManager implements Runnable {
     CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
     private String name;
     private Integer balance;
-    List<CasinoAccount> casinoList;
+    List<PlayerInterface> casinoList = new ArrayList<>();
     boolean quit = true;
     CasinoAccount casinoAccount;
 
     public Casino(PlayerInterface player) {
-        player = (PlayerInterface) player.getArcadeAccount();
-        runNewAccount(player);
+        this.casinoList.add(player);
+
+        //        runNewAccount(player);
     }
 
     public Casino() {
@@ -56,6 +58,9 @@ public class Casino extends CasinoAccountManager implements Runnable {
 //        if(getArcadeDashboardInput().equalsIgnoreCase("login")){
 //
 //        }
+        if(!this.casinoList.isEmpty()){
+            reRunGame(this.casinoList.get(0).getArcadeAccount());
+        }
         while(quit) {
             startGameReal();
 //            this.startGame();
@@ -63,30 +68,41 @@ public class Casino extends CasinoAccountManager implements Runnable {
         }
     }
 
-        //            casinoAccount.registerAccount(CasinoAccount);
-//            if (getArcadeDashboardInput().equalsIgnoreCase("select-game")) {
-//                String gameSelection = getGameSelectionInput();
-//                while (game) {
-//                    if (gameSelection.equalsIgnoreCase("SLOTS")) {
-//                        this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
-//                        game = false;
-//                    } else if (gameSelection.equalsIgnoreCase("BLACKJACK")) {
-////                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
-//                        game = false;
-//                    } else if (gameSelection.equalsIgnoreCase("ROULETTE")) {
-//                        this.play(new RouletteGame(), new RoulettePlayer(casinoAccount));
-//                        game = false;
-//                    } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")) {
-////                            this.play(new NumberGuessGame(), new NumberGuessPlayer(casinoAccount));
-//                        game = false;
-//                    } else if (gameSelection.equalsIgnoreCase("WAR")) {
-//                        this.play(new WarGame(), new WarGamePlayer(casinoAccount));
-//                        game = false;
-//                    } else if (gameSelection.equalsIgnoreCase("CRAPS")) {
-////                    this.play()
-//                    } else {
-//                        console.getStringInput("Please select a game to play");
-//                    }
+
+        if(getArcadeDashboardInput().equalsIgnoreCase("create-account")) {
+
+            String accountName = console.getStringInput("Enter a name for your account:");
+            String accountPassword = console.getStringInput("Enter a password for your account");
+            Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
+
+            CasinoAccount casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
+            //            casinoAccount.registerAccount(CasinoAccount);
+            boolean game = true;
+            while(game) {
+                String gameSelection = getGameSelectionInput();
+                if (gameSelection.equalsIgnoreCase("SLOTS")) {
+                    this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
+                    game = false;
+                } else if (gameSelection.equalsIgnoreCase("BLACKJACK")){
+//                    this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
+                    game = false;
+                } else if (gameSelection.equalsIgnoreCase("ROULETTE")){
+//                    this.play(new RouletteGame(), new RoulettePlayer(casinoAccount));
+                    game = false;
+                } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")){
+//                    this.play(new NumberGuessGame(), new NumberGuessPlayer(casinoAccount));
+                    game = false;
+                }else if (getGameSelectionInput().equalsIgnoreCase("WAR")){
+//                    this.play()
+                } else if (getGameSelectionInput().equalsIgnoreCase("CRAPS")){
+//                    this.play()
+                } else {
+                    console.getStringInput("Please select a game to play");
+                }
+            }
+//            else if (getGameSelectionInput().equalsIgnoreCase("WAR")) {
+//                this.play(new WarGame(), new WarGamePlayer(casinoAccount));
+//            }
 
 
 
@@ -174,6 +190,9 @@ public class Casino extends CasinoAccountManager implements Runnable {
 //        } while (!"logout".equalsIgnoreCase(arcadeDashBoardInput));
 
 
+    public void readWriterFile() {
+
+    }
     private String getArcadeDashboardInput() {
         return console.getStringInput("Welcome to the Arcade Dashboard!" +
                 "\nFrom here, you can select any of the following options:" +
@@ -188,6 +207,37 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 .toString());
     }
 
+    public void reRunGame(CasinoAccount casinoAccount) {
+        this.casinoAccount = this.casinoList.get(0).getArcadeAccount();
+
+            String gameInput = getArcadeDashboardInput();
+            if(gameInput.equalsIgnoreCase("create-account")){
+                String accountName = console.getStringInput("Enter a name for your account:");
+                String accountPassword = console.getStringInput("Enter a password for your account");
+                Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
+
+                this.casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
+            } else if (gameInput.equalsIgnoreCase("select-game")) {
+                String gameSelection = getGameSelectionInput();
+                if (gameSelection.equalsIgnoreCase("SLOTS")) {
+                    this.play(new SlotsGame(), new SlotsPlayer(this.casinoAccount));
+                } else if (gameSelection.equalsIgnoreCase("BLACKJACK")) {
+//                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
+                } else if (gameSelection.equalsIgnoreCase("ROULETTE")) {
+                    this.play(new RouletteGame(), new RoulettePlayer(this.casinoAccount));
+                } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")) {
+//                            this.play(new NumberGuessGame(), new NumberGuessPlayer(casinoAccount));
+                } else if (gameSelection.equalsIgnoreCase("WAR")) {
+                    this.play(new WarGame(), new WarGamePlayer(this.casinoAccount));
+                } else if (gameSelection.equalsIgnoreCase("CRAPS")) {
+//                    this.play()
+                } else {
+                    console.getStringInput("Please select a game to play");
+                }
+            }
+        }
+
+
     public void startGameReal() {
 
             String gameInput = getArcadeDashboardInput();
@@ -196,19 +246,19 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 String accountPassword = console.getStringInput("Enter a password for your account");
                 Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
 
-                casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
+                this.casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
             } else if (gameInput.equalsIgnoreCase("select-game")) {
                 String gameSelection = getGameSelectionInput();
                 if (gameSelection.equalsIgnoreCase("SLOTS")) {
-                    this.play(new SlotsGame(), new SlotsPlayer(casinoAccount));
+                    this.play(new SlotsGame(), new SlotsPlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("BLACKJACK")) {
 //                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("ROULETTE")) {
-                    this.play(new RouletteGame(), new RoulettePlayer(casinoAccount));
+                    this.play(new RouletteGame(), new RoulettePlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")) {
 //                            this.play(new NumberGuessGame(), new NumberGuessPlayer(casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("WAR")) {
-                    this.play(new WarGame(), new WarGamePlayer(casinoAccount));
+                    this.play(new WarGame(), new WarGamePlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("CRAPS")) {
 //                    this.play()
                 } else {
