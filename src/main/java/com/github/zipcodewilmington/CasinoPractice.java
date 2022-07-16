@@ -50,7 +50,7 @@ public class CasinoPractice implements Runnable{
                         this.play(new NumberGuessGamePractice(), new NumberGuessPlayerPractice(casinoAccount));
                         game = false;
                     } else if (getGameSelectionInput().equalsIgnoreCase("WAR")) {
-//                    this.play()
+                    this.play(new WarGamePractice(), new WarGamePracticePlayer(casinoAccount));
                     } else if (getGameSelectionInput().equalsIgnoreCase("CRAPS")) {
 //                    this.play()
                     } else {
