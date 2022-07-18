@@ -49,7 +49,6 @@ public class SlotsGame extends CasinoAccountManager implements GameInterface {
                 String done = console.getStringInput("You can't play without inserting a dollar. Would you like to stay?");
                 if (done.equals("no")) {
                     this.remove(gambler.get(0));
-                    break;
                 }
             }
         }
@@ -75,16 +74,20 @@ public class SlotsGame extends CasinoAccountManager implements GameInterface {
         String input = console.getStringInput("Input $1 to play!");
         if (input.equals("1")) {
             int balance = player.getArcadeAccount().getBalance();
-            player.getArcadeAccount().setBalance(balance - 1);
-            return 1;
+            if (balance <= 0) return 0;
+            else {
+//                player.getArcadeAccount().setBalance(balance - 1);
+                gambler.get(0).getArcadeAccount().setBalance(balance - 1);
+                return 1;
+            }
         }
         else return 0;
     }
 
     public void win(PlayerInterface player, int winnings) {
         int balance = player.getArcadeAccount().getBalance();
-        balance = balance + winnings;
-        player.getArcadeAccount().setBalance(balance);
+        this.balance = balance + winnings;
+        player.getArcadeAccount().setBalance(this.balance);
         System.out.println("Your new balance is " + player.getArcadeAccount().getBalance());
     }
 
