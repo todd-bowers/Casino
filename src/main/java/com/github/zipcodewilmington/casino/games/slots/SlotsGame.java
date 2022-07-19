@@ -148,7 +148,7 @@ public class SlotsGame extends CasinoAccountManager implements GameInterface {
                 " /\\ \\ /\\ / /\\.-,_| |_| |U| |\\  |u                         \n" +
                 "U  \\ V  V /  U\\_)-\\___/  |_| \\_|                          \n" +
                 ".-,_\\ /\\ /_,-.     \\\\    ||   \\\\,-.                       \n" +
-                " \\_)-'  '-(_/     (__)   (_\")  (_/                        " + "\n \n");
+                " \\_)-'  '-(_/     (__)   (_\")  (_/                        " + "\n");
         Thread.sleep(1000);
     }
     public void welcome() throws InterruptedException {
